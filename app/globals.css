@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ink: #18211f; --paper: #f5f7f2; --moss: #355c4b; --line: #d9e0d8; }
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Trebuchet MS", Verdana, sans-serif; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+::selection { background: #ef6f61; color: white; }
+
+.grid-paper { background-image: linear-gradient(rgba(53, 92, 75, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(53, 92, 75, .055) 1px, transparent 1px); background-size: 32px 32px; }
+.animate-in { animation: rise .65s cubic-bezier(.22,1,.36,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .animate-in { animation: none; } }
