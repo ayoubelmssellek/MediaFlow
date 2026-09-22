@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: mediaflow-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: FRONTEND_URL
+        sync: false
+      - key: MEDIAFLOW_COOKIES_FILE
+        sync: false

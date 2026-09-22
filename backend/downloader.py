@@ -38,6 +38,9 @@ def _base_options() -> dict[str, Any]:
     cookies_file = os.getenv("MEDIAFLOW_COOKIES_FILE")
     if cookies_file:
         options["cookiefile"] = cookies_file
+    cookies_browser = os.getenv("MEDIAFLOW_COOKIES_FROM_BROWSER")
+    if cookies_browser and not cookies_file:
+        options["cookiesfrombrowser"] = (cookies_browser,)
     return options
 
 
