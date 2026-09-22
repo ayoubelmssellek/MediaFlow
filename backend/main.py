@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
@@ -9,13 +10,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, HttpUrl
 
-from .downloader import extract_media, stream_media
+try:
+    from .downloader import extract_media, stream_media
+except ImportError:
+    from downloader import extract_media, stream_media
 
 app = FastAPI(title="MediaFlow AI API", version="1.0.0")
 logger = logging.getLogger("mediaflow.api")
+frontend_url = os.getenv("FRONTEND_URL")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[origin for origin in ["http://localhost:3000", "http://127.0.0.1:3000", frontend_url] if origin],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
