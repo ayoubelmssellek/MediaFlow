@@ -20,7 +20,12 @@ logger = logging.getLogger("mediaflow.api")
 frontend_url = os.getenv("FRONTEND_URL")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origin for origin in ["http://localhost:3000", "http://127.0.0.1:3000", frontend_url] if origin],
+    allow_origins=[origin for origin in [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://media-flow-beta.vercel.app",
+        frontend_url,
+    ] if origin],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
